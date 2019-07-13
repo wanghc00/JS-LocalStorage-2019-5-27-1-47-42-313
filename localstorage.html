@@ -7,7 +7,7 @@
 	<body>
 		<table>
 			<tr>
-				<td><p id="result">&nbsp</p></td>
+				<td><p id="result">localStorage.clickcount</p></td>
 			</tr>
 			<tr>
 				<td><button onclick="clickCounter()" type="button">+</button></td>
@@ -16,6 +16,16 @@
 	</body>
 	</center>
     <script>
+		window.onload = function(){
+			if (typeof (Storage) !== "undefined") {
+				if (!localStorage.clickcount) {
+                    localStorage.clickcount = 0;
+                }
+                document.getElementById("result").innerHTML = localStorage.clickcount;
+            } else {
+                document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+            }
+		}
         function clickCounter() {
             if (typeof (Storage) !== "undefined") {
                 if (localStorage.clickcount) {
